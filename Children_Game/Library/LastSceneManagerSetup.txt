@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene/Chapter_Pick.unity
+- path: Assets/Scene/ingame.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Chapter_Pick.unity
     guid: 57c6ca57b95476844a0a180b0cb33b63
+  - enabled: 1
+    path: Assets/Scene/ingame.unity
+    guid: d54f9e4ccf2dc0d478d7590f1752c85b
   m_configObjects: {}
