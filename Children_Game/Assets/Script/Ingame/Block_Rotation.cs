@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Block_Rotation : MonoBehaviour
 {
-    // 블럭 회전속도
-    private float BlockRotation_Speed = 3f;
+    [Header("도형 회전 속도")]
+    public float BlockRotation_Speed = 5f;
 
     void Start()
     {
@@ -14,15 +14,18 @@ public class Block_Rotation : MonoBehaviour
 
     void Update()
     {
-        BlockRotaion();
+        Mouse_Rotation();
     }
 
-    public void BlockRotaion()
+    private void Mouse_Rotation()
     {
         if (Input.GetMouseButton(0))
         {
-            transform.Rotate(0f, -Input.GetAxis("Mouse X") * BlockRotation_Speed, 0f, Space.World);
-            transform.Rotate(Input.GetAxis("Mouse Y") * BlockRotation_Speed, 0f, 0f);
+            float rotX = Input.GetAxis("Mouse X") * BlockRotation_Speed;
+            float rotY = Input.GetAxis("Mouse Y") * BlockRotation_Speed;
+
+            transform.Rotate(Vector3.up * -rotX + Vector3.right * rotY, Space.World);
         }
+
     }
 }
