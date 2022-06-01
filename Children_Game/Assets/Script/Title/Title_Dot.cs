@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Title_Dot : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class Title_Dot : MonoBehaviour
 
     [Header("타이틀 & 부제목")]
     public RectTransform Title;
-    public RectTransform SubTitle;
+
+    [Header("챕터 창")]
+    public RectTransform Chapter_Window;
 
     void Start()
     {
@@ -108,7 +111,7 @@ public class Title_Dot : MonoBehaviour
     }
     #endregion
 
-    #region 게임시작 FadeInOut
+    #region 게임시작 글씨 FadeInOut
 
     public IEnumerator StartTxt_FadeIn()
     {
@@ -133,14 +136,27 @@ public class Title_Dot : MonoBehaviour
 
     public IEnumerator Start_Clcick()
     {
+        // 닷트윈을 통하여 구름(1, 2, 3, 4) X축으로 이동
         Cloud_01.DOAnchorPosX(-1450, 1f).SetEase(Ease.InOutExpo);
         Cloud_02.DOAnchorPosX(1537, 1f).SetEase(Ease.InOutExpo);
         Cloud_03.DOAnchorPosX(-1450, 1f).SetEase(Ease.InOutExpo);
         Cloud_04.DOAnchorPosX(1537, 1f).SetEase(Ease.InOutExpo);
+
+        // 1초 대기
         yield return new WaitForSeconds(1f);
+
+        // 닷트윈을 통하여 타이틀 Y축으로 이동
         Title.DOAnchorPosY(700, 1f).SetEase(Ease.InOutBack);
+
+        // 0.5초 대기
+        yield return new WaitForSeconds(0.5f);
+
+        // 닷트윈을 통하여 챕터 창 X축으로 이동
+        Chapter_Window.DOAnchorPosX(561, 1f).SetEase(Ease.OutBounce);
+
     }
 
 
     #endregion
+
 }
