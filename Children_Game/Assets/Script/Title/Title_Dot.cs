@@ -29,6 +29,10 @@ public class Title_Dot : MonoBehaviour
     [Header("챕터 창")]
     public RectTransform Chapter_Window;
 
+    [Header("나가기 & 뒤로가기 버튼")]
+    public RectTransform Exit_btn;
+    public RectTransform Back_btn;
+
     void Start()
     {
 
@@ -63,9 +67,25 @@ public class Title_Dot : MonoBehaviour
             Start_Num += 1;
             StopCoroutine(Move_Cloud());
             StopCoroutine(ComeBack_Cloud());
-            StartCoroutine(Start_Clcick());
+            StartCoroutine(Start_Click());
         }
+    }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void Back()
+    {
+        if (Start_Num == 1)
+        {
+            Start_Num -= 1f;
+            StartCoroutine(StartTxt_FadeIn());
+            StartCoroutine(Move_Cloud());
+            StartCoroutine(ComeBack_Cloud());
+            StartCoroutine(Back_Click());
+        }
     }
 
     #region 구름 이동
@@ -134,13 +154,17 @@ public class Title_Dot : MonoBehaviour
 
     #region 게임시작 클릭
 
-    public IEnumerator Start_Clcick()
+    public IEnumerator Start_Click()
     {
         // 닷트윈을 통하여 구름(1, 2, 3, 4) X축으로 이동
         Cloud_01.DOAnchorPosX(-1450, 1f).SetEase(Ease.InOutExpo);
         Cloud_02.DOAnchorPosX(1537, 1f).SetEase(Ease.InOutExpo);
         Cloud_03.DOAnchorPosX(-1450, 1f).SetEase(Ease.InOutExpo);
         Cloud_04.DOAnchorPosX(1537, 1f).SetEase(Ease.InOutExpo);
+
+        // 닷트윈을 통하여 나가기버튼 X축으로 이동
+        Exit_btn.DOAnchorPosX(1537, 1f).SetEase(Ease.InOutExpo);
+
 
         // 1초 대기
         yield return new WaitForSeconds(1f);
@@ -154,9 +178,28 @@ public class Title_Dot : MonoBehaviour
         // 닷트윈을 통하여 챕터 창 X축으로 이동
         Chapter_Window.DOAnchorPosX(561, 1f).SetEase(Ease.OutBounce);
 
+        // 닷트윈을 통하여 뒤로가기 버튼 X축으로 이동
+        Back_btn.DOAnchorPosX(568, 1f).SetEase(Ease.OutBounce);
     }
 
+    public IEnumerator Back_Click()
+    {
+        Back_btn.DOAnchorPosX(811, 1f).SetEase(Ease.OutBounce);
+        Chapter_Window.DOAnchorPosX(0, 1f).SetEase(Ease.OutBounce);
 
+        yield return new WaitForSeconds(0.5f);
+
+        Title.DOAnchorPosY(0, 1f).SetEase(Ease.InOutBack);
+
+        yield return new WaitForSeconds(1f);
+
+        Exit_btn.DOAnchorPosX(568, 1f).SetEase(Ease.InOutExpo);
+
+        Cloud_01.DOAnchorPosX(-817, 1f).SetEase(Ease.InOutExpo);
+        Cloud_02.DOAnchorPosX(830, 1f).SetEase(Ease.InOutExpo);
+        Cloud_03.DOAnchorPosX(-755, 1f).SetEase(Ease.InOutExpo);
+        Cloud_04.DOAnchorPosX(650, 1f).SetEase(Ease.InOutExpo);
+    }
     #endregion
 
 }
