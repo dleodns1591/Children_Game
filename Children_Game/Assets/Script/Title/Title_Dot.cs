@@ -179,27 +179,35 @@ public class Title_Dot : MonoBehaviour
         Chapter_Window.DOAnchorPosX(561, 1f).SetEase(Ease.OutBounce);
 
         // 닷트윈을 통하여 뒤로가기 버튼 X축으로 이동
-        Back_btn.DOAnchorPosX(568, 1f).SetEase(Ease.OutBounce);
+        Back_btn.DOAnchorPosX(-690, 1f).SetEase(Ease.OutBounce);
     }
+    #endregion
 
     public IEnumerator Back_Click()
     {
-        Back_btn.DOAnchorPosX(811, 1f).SetEase(Ease.OutBounce);
+        // 닷트윈을 통하여 뒤로가기 버튼 X축으로 이동
+        Back_btn.DOAnchorPosX(-1264, 1f).SetEase(Ease.OutBounce);
+
+        // 닷트윈을 통하여 챕터 창 X축으로 이동
         Chapter_Window.DOAnchorPosX(0, 1f).SetEase(Ease.OutBounce);
 
+        // 0.5초 대기
         yield return new WaitForSeconds(0.5f);
 
+        // 닷트윈을 통하여 타이틀 Y축으로 이동
         Title.DOAnchorPosY(0, 1f).SetEase(Ease.InOutBack);
 
+        // 1초 대기
         yield return new WaitForSeconds(1f);
 
+        // 닷트윈을 통하여 나가기 버튼 X축으로 이동
         Exit_btn.DOAnchorPosX(568, 1f).SetEase(Ease.InOutExpo);
 
+        // 닷트윈을 통하여 구름(1, 2, 3, 4) X축으로 이동
         Cloud_01.DOAnchorPosX(-817, 1f).SetEase(Ease.InOutExpo);
         Cloud_02.DOAnchorPosX(830, 1f).SetEase(Ease.InOutExpo);
         Cloud_03.DOAnchorPosX(-755, 1f).SetEase(Ease.InOutExpo);
         Cloud_04.DOAnchorPosX(650, 1f).SetEase(Ease.InOutExpo);
     }
-    #endregion
 
 }

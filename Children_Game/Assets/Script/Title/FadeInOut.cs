@@ -11,7 +11,7 @@ public class FadeInOut : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -24,14 +24,27 @@ public class FadeInOut : MonoBehaviour
         StartCoroutine(FadeInOut_Coroutine());
     }
 
+    #region 페이드인아웃
     public IEnumerator FadeInOut_Coroutine()
     {
         Fade.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Stage_01");
+        if (SceneManager.GetActiveScene().name == "Title")
+        {
+            SceneManager.LoadScene("Stage_01");
+        }
+        else if (SceneManager.GetActiveScene().name == "Stage_01")
+        {
+            SceneManager.LoadScene("Stage_02");
+        }
+        else if (SceneManager.GetActiveScene().name == "Stage_02")
+        {
+            SceneManager.LoadScene(null);
+        }
         yield return new WaitForSeconds(0.5f);
         Fade.DOFade(0f, 1f);
         yield return new WaitForSeconds(0.5f);
         Destroy(this.gameObject);
     }
+    #endregion
 }

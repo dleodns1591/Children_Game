@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene/ingame/Stage_02.unity
+- path: Assets/Scene/Title/Title.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

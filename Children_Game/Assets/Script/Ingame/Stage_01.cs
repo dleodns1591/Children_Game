@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Stage_01 : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Stage_01 : MonoBehaviour
     public GameObject Shape_Circle;
     public GameObject Shape_Rectangle;
     public GameObject Shape_Triangle;
+
+    [Header("다음 스테이지 버튼")]
+    public RectTransform NextStage;
 
     [Header("페이드인아웃")]
     public Image FadeInOut;
@@ -31,6 +35,7 @@ public class Stage_01 : MonoBehaviour
     {
 
     }
+
     public void Shape_Click(int shape)
     {
         if (rand == shape)
@@ -59,6 +64,8 @@ public class Stage_01 : MonoBehaviour
         if (clearcheak.Count == 0)
         {
             FadeInOut.DOFade(0, 0.8f);
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            NextStage.DOAnchorPosY(50, 1f).SetEase(Ease.OutBounce);
             yield break;
         }
         do
