@@ -39,7 +39,7 @@ public class FadeInOut : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Stage_02")
         {
-            SceneManager.LoadScene(null);
+            SceneManager.LoadScene("Title");
         }
         yield return new WaitForSeconds(0.5f);
         Fade.DOFade(0f, 1f);
